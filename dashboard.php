@@ -24,7 +24,7 @@
             <h1 id="logo_Dash"><i class="fas fa-tree"></i>  Bonsai</h1>
                 <ul id="Side_Menu" class="nav nav-pills nav-stacked">
                     <li class="active"><a href="Dashboard.php"><i class="fas fa-th"></i>&nbsp;Dashboard</a></li>
-                    <li><a href="#"><i class="fas fa-plus-square"></i>&nbsp;Add New Post</a></li>
+                    <li><a href="AddNewPost.php"><i class="fas fa-user"></i>&nbsp;Manage Admins</a></li>
                     <li><a href="Categories.php"><i class="fas fa-tags"></i>&nbsp;Categories</a></li>
                     <li><a href="#"><i class="fas fa-user"></i>&nbsp;Manage Admins</a></li>
                     <li><a href="#"><i class="fas fa-comment-alt"></i>&nbsp;Comments</a></li>

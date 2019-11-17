@@ -43,7 +43,7 @@ if(isset($_POST["Submit"])){
     <link rel="stylesheet" href="css/adminstyles.css">
     <script src="js/all.js"></script>
 
-    <title>Categories</title>
+    <title>Add New Post</title>
 </head>
 <body>
 
@@ -54,8 +54,8 @@ if(isset($_POST["Submit"])){
             <h1 id="logo_Dash"><i class="fas fa-tree"></i>  Bonsai</h1>
                 <ul id="Side_Menu" class="nav nav-pills nav-stacked">
                     <li><a href="dashboard.php"><i class="fas fa-th"></i>&nbsp;Dashboard</a></li>
-                    <li><a href="AddNewPost.php"><i class="fas fa-plus-square"></i>&nbsp;Add New Post</a></li>
-                    <li class="active"><a href="Categories.php"><i class="fas fa-tags"></i>&nbsp;Categories</a></li>
+                    <li class="active"><a href="AddNewPost.php"><i class="fas fa-plus-square"></i>&nbsp;Add New Post</a></li>
+                    <li><a href="Categories.php"><i class="fas fa-tags"></i>&nbsp;Categories</a></li>
                     <li><a href=""><i class="fas fa-user"></i>&nbsp;Manage Admins</a></li>
                     <li><a href="#"><i class="fas fa-comment-alt"></i>&nbsp;Comments</a></li>
                     <li><a href="#"><i class="fas fa-podcast"></i>&nbsp;Live Blog</a></li>
@@ -64,54 +64,46 @@ if(isset($_POST["Submit"])){
             </div> <!-- End Side Area-->
 
             <div class="col-sm-10">
-                <h1>Manage Categories</h1>
+                <h1>Add New Post</h1>
                 <div><?php 
                     echo message(); 
                     echo Successmessage();
                 ?></div>
                 <div>
-                    <form action="Categories.php" method="post">
+                    <form action="Categories.php" method="post" enctype="multipart/form-data">
                         <fieldset>
                           <div class="form-group">
-                            <label for="categoryname"><span class="FieldInfo">Name:</span></label>
-                            <input class="form-control" type="text" name="Category" id="categoryname" placeholder="Name">
+                            <label for="title"><span class="FieldInfo">Title:</span></label>
+                            <input class="form-control" type="text" name="Title" id="title" placeholder="Title">
                           </div>
+
+                          <div class="form-group">
+                            <label for="categoryselect"><span class="FieldInfo">Category:</span></label>
+                            <select name="Category" id="categoryselect" class="form-control">
+                            <?php 
+                                global $Connection;
+                                $ViewQuery = "SELECT * FROM category ORDER by datetime desc";
+                                $Execute = mysqli_query($Connection,$ViewQuery);
+                                while ($row=mysqli_fetch_array($Execute)) {
+                                    $Id=$row["id"]; 
+                                    $CategoryName=$row["name"];                        
+                            ?>
+                                 <option><?php echo $CategoryName; ?></option>
+                                 <?php } ?>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="image"><span class="FieldInfo">Select Image:</span></label>
+                            <input type="file" class="form-control" name="Image" id="image">
+                          </div>
+                          <div class="form-group">
+                            <label for="postarea"><span class="FieldInfo">Post:</span></label>
+                            <textarea class="form-control" name="Post" id="postarea"></textarea>
                           <br>
-                          <input class="btn btn-primary btn-block" type="submit" name="Submit" value="Add New Category">
+                          <input class="btn btn-primary btn-block" type="submit" name="Submit" value="Add New Post">
                         </fieldset>
                         <br>
                     </form>
-                </div>
-
-                <div class="">
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <th>Sr No.</th>
-                            <th>Date & Time</th>
-                            <th>Category Name</th>
-                            <th>Creator Name</th>
-                        </tr>
-                        <?php 
-                            global $Connection;
-                            $ViewQuery = "SELECT * FROM category ORDER by datetime desc";
-                            $Execute = mysqli_query($Connection,$ViewQuery);
-                            
-                            $SrNo=0;
-                            while ($row=mysqli_fetch_array($Execute)) {
-                                $Id=$row["id"];
-                                $DateTime=$row["datetime"];   
-                                $CategoryName=$row["name"]; 
-                                $CreatorName=$row["creatorname"]; 
-                                $SrNo++;                          
-                        ?>
-                        <tr>
-                            <td><?php echo $SrNo ?></td>
-                            <td><?php echo $DateTime ?></td>
-                            <td><?php echo $CategoryName ?></td>
-                            <td><?php echo $CreatorName ?></td>
-                        </tr>
-                        <?php } ?>
-                    </table>
                 </div>
 
             </div> <!--END Main Area-->
