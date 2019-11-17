@@ -5,32 +5,36 @@
 
 <?php
 if(isset($_POST["Submit"])){
+    $Title=$_POST["Title"]; 
     $Category=$_POST["Category"]; 
+    $Post=$_POST["Post"]; 
     date_default_timezone_set('Asia/Dubai');
     $CurrentTime=time(); 
     $DateTime=strftime("%d-%B-%Y %H:%M:%S",$CurrentTime);   
     $DateTime;
     $Admin = "DevStudio"; // default admin
-    if(empty($Category)){
-        $_SESSION["ErrorMessage"]="Field must be field out";
-        Redirect_to("Categories.php");
-    }elseif(strlen($Category)>99) {
-        $_SESSION["ErrorMessage"]="Too long name for Category";
-        Redirect_to("Categories.php");
+    $Image = $_FILES["Image"]["name"];
+    $Target="Upload/".basename($_FILES["Image"]["name"]); // target for save image in 'Upload' folder
+    if(empty($Title)){
+        $_SESSION["ErrorMessage"]="Title can't be Empty!";
+        Redirect_to("AddNewPost.php");
+    }elseif(strlen($Title)<2) {
+        $_SESSION["ErrorMessage"]="Title should be at least 2 Characters!";
+        Redirect_to("AddNewPost.php");
     }else {
         global $Connection;
-        $Query = "INSERT INTO category(datetime,name,creatorname) VALUES('$DateTime','$Category','$Admin')";
+        $Query = "INSERT INTO admin_panel(datetime,title,category,author,image,post) VALUES('$DateTime','$Title','$Category','$Admin','$Image','$Post')";
         $Execute = mysqli_query($Connection,$Query);
+        move_uploaded_file($_FILES["Image"]["tmp_name"],$Target); // function for save image in 'Upload' folder
         if($Execute) {
-            $_SESSION["Successmessage"]="Category added Successfully";
-            Redirect_to("Categories.php");
+            $_SESSION["Successmessage"]="Post added Successfully";
+            Redirect_to("AddNewPost.php");
         }else {
-            $_SESSION["ErrorMessage"]="Category failed to add";
-            Redirect_to("Categories.php");
+            $_SESSION["ErrorMessage"]="Something Went Wrong!";
+            Redirect_to("AddNewPost.php");
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +74,7 @@ if(isset($_POST["Submit"])){
                     echo Successmessage();
                 ?></div>
                 <div>
-                    <form action="Categories.php" method="post" enctype="multipart/form-data">
+                    <form action="AddNewPost.php" method="post" enctype="multipart/form-data">
                         <fieldset>
                           <div class="form-group">
                             <label for="title"><span class="FieldInfo">Title:</span></label>
