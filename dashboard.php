@@ -1,3 +1,8 @@
+<?php require_once("include/Sessions.php"); ?>
+<?php require_once("include/Functions.php"); ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +25,7 @@
                 <ul id="Side_Menu" class="nav nav-pills nav-stacked">
                     <li class="active"><a href="Dashboard.php"><i class="fas fa-th"></i>&nbsp;Dashboard</a></li>
                     <li><a href="#"><i class="fas fa-plus-square"></i>&nbsp;Add New Post</a></li>
-                    <li><a href="#"><i class="fas fa-tags"></i>&nbsp;Categories</a></li>
+                    <li><a href="Categories.php"><i class="fas fa-tags"></i>&nbsp;Categories</a></li>
                     <li><a href="#"><i class="fas fa-user"></i>&nbsp;Manage Admins</a></li>
                     <li><a href="#"><i class="fas fa-comment-alt"></i>&nbsp;Comments</a></li>
                     <li><a href="#"><i class="fas fa-podcast"></i>&nbsp;Live Blog</a></li>
@@ -30,6 +35,10 @@
 
             <div class="col-sm-10">
                 <h1>Admin Dashboard</h1>
+                <div><?php 
+                    echo message(); 
+                    echo Successmessage();
+                ?></div>
                
                 <h4>About</h4>
                 <p>Lorem ipsum <em>dolor sit amet consectetur</em> adipisicing elit. Quae corporis officia maiores amet at, tempore sed quidem ratione fuga architecto, magni, molestiae officiis quis animi ipsum quia pariatur exercitationem illo.</p>

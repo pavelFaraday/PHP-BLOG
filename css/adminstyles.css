@@ -1,33 +1,27 @@
 body {
     background-color: #2f4050;
 }
-
 .col-sm-10 {
     background-color: #ffffff;
 }
-
 #Side_Menu a {
     color:#9fb1c2;
 }
-
 #Side_Menu .active a {
     color: #ffffff;
     background-color: #27aae1;
     font-weight: bold;
 }
-
 #Side_Menu a:hover {
     color: #ffffff;
     font-weight: bold;
     background-color: #1ab394;
     display: block;
 }
-
 #logo_Dash {
     color: #0fb60f;
     margin-bottom: 20px;
 }
-
 #footer {
     padding: 10px;
     border-top: 1px solid black;
@@ -35,7 +29,11 @@ body {
     background-color: #211f22;
     text-align: center;
 }
-
 #footer p {
     padding-top: 5px;
 }
+.FieldInfo {
+    color: rgb(251, 174, 44);
+    font-size: 1.2em;
+}
+
