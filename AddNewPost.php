@@ -9,8 +9,8 @@ if(isset($_POST["Submit"])){
     $Category=$_POST["Category"]; 
     $Post=$_POST["Post"]; 
     date_default_timezone_set('Asia/Dubai');
-    $CurrentTime=time(); 
-    $DateTime=strftime("%d-%B-%Y %H:%M:%S",$CurrentTime);   
+    $CurrentTime=time();
+    $DateTime=strftime("%d-%B-%Y %H:%M:%S",$CurrentTime);
     $DateTime;
     $Admin = "DevStudio"; // default admin
     $Image = $_FILES["Image"]["name"];
