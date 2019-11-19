@@ -102,15 +102,25 @@
                         ?>
 
                         <tr>
-                           <td><?php echo $SrNo; ?></td>
-                           <td><?php echo $Title; ?></td>
-                           <td><?php echo $DateTime; ?></td>
-                           <td><?php echo $Admin; ?></td>
-                           <td><?php echo $Category; ?></td>
-                           <td><img src="Upload/<?php echo $Image; ?>" width="100"></td>
-                           <td>Processing</td>
-                           <td>Edit & Delete</td>
-                           <td>Live Preview</td>
+                            <td><?php echo $SrNo; ?></td>
+                            <td id="title_style">
+                            <?php
+                                if(strlen($Title)>18) {$Title=substr($Title,0,18).'..';}
+                                echo $Title; 
+                            ?></td>
+                            <td><?php
+                                if(strlen($DateTime)>11) {$DateTime=substr($DateTime,0,11).'..';}
+                                echo $DateTime; 
+                            ?></td>
+                            <td><?php echo $Admin; ?></td>
+                            <td><?php echo $Category; ?></td>
+                            <td><img src="Upload/<?php echo $Image; ?>" width="100"></td>
+                            <td>Processing</td>
+                            <td>
+                                <a href="EditPost.php?Edit=<?php echo $Id; ?>"><span class="btn btn-warning">Edit</span></a>  
+                                <a href="DeletePost.php?Delete=<?php echo $Id; ?>"><span class="btn btn-danger">Delete</span></a>  
+                            </td>
+                           <td> <a href="FullPost.php?id=<?php echo $Id; ?>" target="_blank"><span class="btn btn-primary">Live Preview</span></a></td>
                         </tr>
                             <?php } ?>
                 

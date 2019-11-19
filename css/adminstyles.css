@@ -63,4 +63,8 @@ body {
     color: rgb(251, 174, 44);
     font-size: 1.2em;
 }
+#title_style {
+    color:#5e5eff; 
+    font-weight:bold;
+}
 
