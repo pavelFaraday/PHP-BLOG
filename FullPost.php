@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/publicstyles.css">
-    <title>Blog | Main</title>
+    <title>Blog | Full Post</title>
 </head>
 <body>
         <nav class="navbar navbar-inverse rounded-0" role="navigation">
@@ -61,7 +61,9 @@
                         OR category LIKE '%$Search%' 
                         OR post LIKE '%$Search%' ";
                     } else {
-                    $ViewQuery = "SELECT * FROM Admin_panel ORDER BY datetime desc"; }
+                             $PostIDFromURL = $_GET["id"];
+                             $ViewQuery = "SELECT * FROM Admin_panel WHERE id='$PostIDFromURL' ORDER BY datetime desc";
+                            }
                     $Execute = mysqli_query($Connection,$ViewQuery);
                     while ($row=mysqli_fetch_array($Execute)) {
                         $PostId=$row["id"];
@@ -82,10 +84,8 @@
                         Published on <?php echo htmlentities($DateTime); ?>
                         </p>
                         <p class="post"><?php 
-                        if(strlen($Post)>280) {$Post=substr($Post,0,280).'...';}
                         echo $Post; ?></p>
                     </div>
-                    <a href="FullPost.php?id=<?php echo $PostId; ?>"><button class="btn btn-info">Read More &rsaquo;&rsaquo;</button></a>
                 </div>
                     <?php } ?>
             </div>
