@@ -1,6 +1,33 @@
 body {
     background-color: #2f4050;
 }
+.navbar {
+    border-radius: 0;
+}
+#logo {
+    width: 150px;
+    height: 50px;
+}
+#logo img {
+    width: 35%;
+}
+#dashboard_logo {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+}
+.navbar-nav li {
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.2em;
+}
+.navbar-form {
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+.Line {
+    margin-top: -20px;
+}
 .col-sm-10 {
     background-color: #ffffff;
 }

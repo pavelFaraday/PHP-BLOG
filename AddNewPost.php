@@ -50,12 +50,43 @@ if(isset($_POST["Submit"])){
     <title>Add New Post</title>
 </head>
 <body>
+<nav class="navbar navbar-inverse rounded-0" role="navigation">
+            <div class="container">
+                <div id="logo" class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="Blog.php">
+                        <img src="img/logo44.png" alt="apple" width=25%;>
+                    </a>
+                </div>
+            <div class="collapse navbar-collapse" id="collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li class="active"><a href="Blog.php">Blog</a></li>
+                    <li><a href="">About Us</a></li>
+                    <li><a href="">Services</a></li>
+                    <li><a href="">Contact Us</a></li>
+                    <li><a href="">Feature</a></li>
+                </ul>
+                <form action="Blog.php" class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="Search" placeholder="Search">
+                    </div>
+                    <button id="search_button" class="btn btn-info" name="SearchButton">Search</button>
+                </form>
+            </div>
+            </div>
+        </nav>
 
     <div class="container-fluid">
 
         <div class="row">
             <div class="col-sm-2">
-            <h1 id="logo_Dash"><i class="fas fa-tree"></i>  Bonsai</h1>
+            <img id="dashboard_logo" src="img/logo44.png" alt="logo">
                 <ul id="Side_Menu" class="nav nav-pills nav-stacked">
                     <li><a href="dashboard.php"><i class="fas fa-th"></i>&nbsp;Dashboard</a></li>
                     <li class="active"><a href="AddNewPost.php"><i class="fas fa-plus-square"></i>&nbsp;Add New Post</a></li>
