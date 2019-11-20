@@ -2,7 +2,6 @@
 <?php require_once("include/Sessions.php"); ?>
 <?php require_once("include/Functions.php"); ?>
 
-
 <?php
 if(isset($_POST["Submit"])){
     $Title=$_POST["Title"]; 
@@ -15,25 +14,19 @@ if(isset($_POST["Submit"])){
     $Admin = "DevStudio"; // default admin
     $Image = $_FILES["Image"]["name"];
     $Target="Upload/".basename($_FILES["Image"]["name"]); // target for save image in 'Upload' folder
-    if(empty($Title)){
-        $_SESSION["ErrorMessage"]="Title can't be Empty!";
-        Redirect_to("AddNewPost.php");
-    }elseif(strlen($Title)<2) {
-        $_SESSION["ErrorMessage"]="Title should be at least 2 Characters!";
-        Redirect_to("AddNewPost.php");
-    }else {
+
         global $Connection;
-        $Query = "INSERT INTO admin_panel(datetime,title,category,author,image,post) VALUES('$DateTime','$Title','$Category','$Admin','$Image','$Post')";
+        $DeleteFromURL=$_GET['Delete'];
+        $Query = "DELETE FROM admin_panel WHERE id='$DeleteFromURL'";
         $Execute = mysqli_query($Connection,$Query);
         move_uploaded_file($_FILES["Image"]["tmp_name"],$Target); // function for save image in 'Upload' folder
         if($Execute) {
-            $_SESSION["Successmessage"]="Post added Successfully";
-            Redirect_to("AddNewPost.php");
+            $_SESSION["Successmessage"]="Post Deleted Successfully";
+            Redirect_to("dashboard.php");
         }else {
             $_SESSION["ErrorMessage"]="Something Went Wrong!";
-            Redirect_to("AddNewPost.php");
+            Redirect_to("dashboard.php");
         }
-    }
 }
 ?>
 
@@ -46,8 +39,7 @@ if(isset($_POST["Submit"])){
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/adminstyles.css">
     <script src="js/all.js"></script>
-
-    <title>Add New Post</title>
+    <title>Delete Post</title>
 </head>
 <body>
 <nav class="navbar navbar-inverse rounded-0" role="navigation">
@@ -83,7 +75,6 @@ if(isset($_POST["Submit"])){
         </nav>
 
     <div class="container-fluid">
-
         <div class="row">
             <div class="col-sm-2">
             <img id="dashboard_logo" src="img/logo44.png" alt="logo">
@@ -99,22 +90,36 @@ if(isset($_POST["Submit"])){
             </div> <!-- End Side Area-->
 
             <div class="col-sm-10">
-                <h1>Add New Post</h1>
+                <h1>Delete Post</h1>
                 <div><?php 
                     echo message(); 
                     echo Successmessage();
                 ?></div>
                 <div>
-                    <form action="AddNewPost.php" method="post" enctype="multipart/form-data">
+                <?php 
+                    $SearchQueryParameter = $_GET['Delete'];
+                    global $Connection;
+                    $Query = "SELECT * FROM admin_panel WHERE id='$SearchQueryParameter'";
+                    $Execute = mysqli_query($Connection,$Query);
+                    while ($row=mysqli_fetch_array($Execute)) {
+                        $Title_To_Update=$row["title"]; 
+                        $Category_To_Update=$row["category"]; 
+                        $Image_To_Update=$row["image"]; 
+                        $Post_To_Update=$row["post"]; 
+                    }
+                ?>
+
+                    <form action="DeletePost.php?Delete=<?php echo $SearchQueryParameter; ?>" method="post" enctype="multipart/form-data">
                         <fieldset>
                           <div class="form-group">
                             <label for="title"><span class="FieldInfo">Title:</span></label>
-                            <input class="form-control" type="text" name="Title" id="title" placeholder="Title">
+                            <input disabled value="<?php echo $Title_To_Update; ?>" class="form-control" type="text" name="Title" id="title">
                           </div>
 
                           <div class="form-group">
                             <label for="categoryselect"><span class="FieldInfo">Category:</span></label>
-                            <select name="Category" id="categoryselect" class="form-control">
+                            <span>(Existing Category: <?php echo $Category_To_Update; ?>)</span>
+                            <select disabled name="Category" id="categoryselect" class="form-control">
                             <?php 
                                 global $Connection;
                                 $ViewQuery = "SELECT * FROM category ORDER by datetime desc";
@@ -128,14 +133,17 @@ if(isset($_POST["Submit"])){
                             </select>
                           </div>
                           <div class="form-group">
+                            <div><img src="Upload/<?php echo $Image_To_Update; ?>" width=200></div>
                             <label for="image"><span class="FieldInfo">Select Image:</span></label>
-                            <input type="file" class="form-control" name="Image" id="image">
+                            <input disabled  type="file" class="form-control" name="Image" id="image">
                           </div>
                           <div class="form-group">
                             <label for="postarea"><span class="FieldInfo">Post:</span></label>
-                            <textarea cols="30" rows="10" class="form-control" name="Post" id="postarea"></textarea>
+                            <textarea disabled  cols="30" rows="10" class="form-control" name="Post" id="postarea">
+                                <?php echo $Post_To_Update; ?>
+                            </textarea>
                           <br>
-                          <input class="btn btn-primary btn-block" type="submit" name="Submit" value="Add New Post">
+                          <input class="btn btn-danger btn-block" type="submit" name="Submit" value="Delete Post">
                         </fieldset>
                         <br>
                     </form>
