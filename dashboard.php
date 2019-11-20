@@ -56,7 +56,7 @@
                     <li><a href="AddNewPost.php"><i class="fas fa-plus-square"></i>&nbsp;Add New Post</a></li>
                     <li><a href="Categories.php"><i class="fas fa-tags"></i>&nbsp;Categories</a></li>
                     <li><a href="#"><i class="fas fa-user"></i>&nbsp;Manage Admins</a></li>
-                    <li><a href="#"><i class="fas fa-comment-alt"></i>&nbsp;Comments</a></li>
+                    <li><a href="Comments.php"><i class="fas fa-comment-alt"></i>&nbsp;Comments</a></li>
                     <li><a href="#"><i class="fas fa-podcast"></i>&nbsp;Live Blog</a></li>
                     <li><a href="#"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a></li>
                 </ul>
@@ -123,18 +123,10 @@
                            <td> <a href="FullPost.php?id=<?php echo $Id; ?>" target="_blank"><span class="btn btn-primary">Live Preview</span></a></td>
                         </tr>
                             <?php } ?>
-                
-                       
-
+                            
                     </table>
                 </div>
 
-
-
-
-
-
-               
             </div> <!--END Main Area-->
         </div> <!--END row-->
     </div> <!--END Main Container_fluid-->

@@ -125,14 +125,12 @@ if(isset($_POST["Submit"])){
                 <?php 
                     global $Connection;
                     $PostIdForComments = $_GET["id"];
-                    $Query = "SELECT * FROM comments WHERE admin_panel_id='$PostIdForComments'";
+                    $Query = "SELECT * FROM comments WHERE admin_panel_id='$PostIdForComments' AND status='ON'";
                     $Execute = mysqli_query($Connection,$Query);
                     while ($row=mysqli_fetch_array($Execute)) {
                         $CommentDate = $row["datetime"];
                         $CommenterName = $row["name"];
                         $Comment = $row["comment"];
-                    
-
                 ?>
                     <div class="comment_block">
                         <img class="pull-left" src="img/User2.png" alt="user" width="80px">
