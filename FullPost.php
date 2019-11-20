@@ -18,7 +18,8 @@ if(isset($_POST["Submit"])){
         $_SESSION["ErrorMessage"]="Only 500 Characters are allowed in Comment!";
     }else {
         global $Connection;
-        $Query = "INSERT INTO comments (datetime,name,email,comment,status) VALUES ('$DateTime','$Name','$Email','$Comment','OFF')";
+        $PostIDFromURL = $_GET["id"];
+        $Query = "INSERT INTO comments (datetime,name,email,comment,status,admin_panel_id) VALUES ('$DateTime','$Name','$Email','$Comment','OFF','$PostIDFromURL')";
         $Execute = mysqli_query($Connection,$Query);
         if($Execute) {
             $_SESSION["Successmessage"]="Comment Submitted Successfully";
