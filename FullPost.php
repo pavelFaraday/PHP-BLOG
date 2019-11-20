@@ -88,6 +88,30 @@
                     </div>
                 </div>
                     <?php } ?>
+
+                <div>
+                    <form action="AddNewPost.php" method="post" enctype="multipart/form-data">
+                        <fieldset>
+                        <div class="form-group">
+                            <label for="Name"><span class="FieldInfo">Name:</span></label>
+                            <input class="form-control" type="text" name="Name" id="Name" placeholder="Name">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="Email"><span class="FieldInfo">Email:</span></label>
+                            <input class="form-control" type="email" name="Email" id="Email" placeholder="Email">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="commentarea"><span class="FieldInfo">Comment:</span></label>
+                            <textarea cols="30" rows="10" class="form-control" name="Comment" id="commentarea"></textarea>
+                          <br>
+                          <input class="btn btn-primary" type="submit" name="Submit" value="Submit">
+                        </fieldset>
+                        <br>
+                    </form>
+                </div>
+
             </div>
             <div class="col-sm-4" style="background:blue;">
                 <h2>Test Right</h2>

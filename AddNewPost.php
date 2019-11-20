@@ -83,7 +83,6 @@ if(isset($_POST["Submit"])){
         </nav>
 
     <div class="container-fluid">
-
         <div class="row">
             <div class="col-sm-2">
             <img id="dashboard_logo" src="img/logo44.png" alt="logo">
