@@ -121,6 +121,29 @@ if(isset($_POST["Submit"])){
                     </div>
                 </div>
                     <?php } ?>
+                    <h4 class="comment-header">Comments:</h4>
+                <?php 
+                    global $Connection;
+                    $PostIdForComments = $_GET["id"];
+                    $Query = "SELECT * FROM comments WHERE admin_panel_id='$PostIdForComments'";
+                    $Execute = mysqli_query($Connection,$Query);
+                    while ($row=mysqli_fetch_array($Execute)) {
+                        $CommentDate = $row["datetime"];
+                        $CommenterName = $row["name"];
+                        $Comment = $row["comment"];
+                    
+
+                ?>
+                    <div class="comment_block">
+                        <img class="pull-left" src="img/User2.png" alt="user" width="80px">
+                        <p class="comment-info"><?php echo $CommenterName; ?></p>
+                        <p class="description"><?php echo $CommentDate; ?></p>
+                        <p class="comment"><?php echo $Comment; ?></p>
+
+                    </div>
+                    <br>
+                    <hr>
+                <?php } ?>
 
                 <div>
                     <form action="FullPost.php?id=<?php echo $PostId; ?>" method="post" enctype="multipart/form-data">

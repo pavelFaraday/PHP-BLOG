@@ -68,3 +68,26 @@
     color: rgb(251, 174, 44);
     font-size: 1.2em;
 }
+.comment_block {
+    background-color: #f6f7f9;
+}
+.comment-info {
+    color: #365899;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-left: 35px;
+}
+.comment {
+    margin-top: -5px;
+    padding-bottom: 10px;
+    font-size: 1.2em;
+}
+.pull-left {
+    margin-top: 8px;
+}
+.comment-header {
+    margin-top: 40px;
+    font-weight: bold;
+    color: rgb(251, 174, 44);
+}
