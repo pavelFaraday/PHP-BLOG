@@ -2,6 +2,34 @@
 <?php require_once("include/Sessions.php"); ?>
 <?php require_once("include/Functions.php"); ?>
 
+<?php
+if(isset($_POST["Submit"])){
+    $Name=$_POST["Name"]; 
+    $Email=$_POST["Email"]; 
+    $Comment=$_POST["Comment"]; 
+    date_default_timezone_set('Asia/Dubai');
+    $CurrentTime=time();
+    $DateTime=strftime("%d-%B-%Y %H:%M:%S",$CurrentTime);
+    $DateTime;
+    $PostId=$_GET["id"];
+    if(empty($Name)||empty($Email)||empty($Comment)){
+        $_SESSION["ErrorMessage"]="All fields are required!";
+    }elseif(strlen($Comment)>500) {
+        $_SESSION["ErrorMessage"]="Only 500 Characters are allowed in Comment!";
+    }else {
+        global $Connection;
+        $Query = "INSERT INTO comments (datetime,name,email,comment,status) VALUES ('$DateTime','$Name','$Email','$Comment','OFF')";
+        $Execute = mysqli_query($Connection,$Query);
+        if($Execute) {
+            $_SESSION["Successmessage"]="Comment Submitted Successfully";
+            Redirect_to("FullPost.php?id={$PostId}");
+        }else {
+            $_SESSION["ErrorMessage"]="Something Went Wrong!";
+            Redirect_to("FullPost.php?id={$PostId}");
+        }
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,6 +80,10 @@
         </div>
         <div class="row">
             <div class="col-sm-8">
+                <div><?php 
+                    echo message(); 
+                    echo Successmessage();
+                ?></div>
                 <?php 
                     global $Connection;
                     if(isset($_GET["SearchButton"])) {
@@ -90,7 +122,7 @@
                     <?php } ?>
 
                 <div>
-                    <form action="AddNewPost.php" method="post" enctype="multipart/form-data">
+                    <form action="FullPost.php?id=<?php echo $PostId; ?>" method="post" enctype="multipart/form-data">
                         <fieldset>
                         <div class="form-group">
                             <label for="Name"><span class="FieldInfo">Name:</span></label>

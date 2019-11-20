@@ -2,7 +2,6 @@
 <?php require_once("include/Sessions.php"); ?>
 <?php require_once("include/Functions.php"); ?>
 
-
 <?php
 if(isset($_POST["Submit"])){
     $Title=$_POST["Title"]; 
