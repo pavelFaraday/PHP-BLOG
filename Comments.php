@@ -55,7 +55,19 @@
                     <li><a href="AddNewPost.php"><i class="fas fa-plus-square"></i>&nbsp;Add New Post</a></li>
                     <li><a href="Categories.php"><i class="fas fa-tags"></i>&nbsp;Categories</a></li>
                     <li><a href="#"><i class="fas fa-user"></i>&nbsp;Manage Admins</a></li>
-                    <li class="active"><a href="Comments.php"><i class="fas fa-comment-alt"></i>&nbsp;Comments</a></li>
+                    <li class="active"><a href="Comments.php"><i class="fas fa-comment-alt"></i>&nbsp;Comments
+                    <?php 
+                        global $Connection;
+                        $AllCommnetQuery = "SELECT COUNT(*) FROM comments WHERE status='OFF'";
+                        $AllCommnetExecute = mysqli_query($Connection,$AllCommnetQuery);
+                        $AllCommnetrow=mysqli_fetch_array($AllCommnetExecute);
+                        $AllCommnets=array_shift($AllCommnetrow);
+                        if($AllCommnets>0) {
+                    ?>
+                        <span class="label label-warning pull-right"><?php echo $AllCommnets; ?></span>
+                                 <?php } ?>
+
+                    </a></li>
                     <li><a href="#"><i class="fas fa-podcast"></i>&nbsp;Live Blog</a></li>
                     <li><a href="#"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a></li>
                 </ul>

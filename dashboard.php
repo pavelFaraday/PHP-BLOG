@@ -56,7 +56,19 @@
                     <li><a href="AddNewPost.php"><i class="fas fa-plus-square"></i>&nbsp;Add New Post</a></li>
                     <li><a href="Categories.php"><i class="fas fa-tags"></i>&nbsp;Categories</a></li>
                     <li><a href="#"><i class="fas fa-user"></i>&nbsp;Manage Admins</a></li>
-                    <li><a href="Comments.php"><i class="fas fa-comment-alt"></i>&nbsp;Comments</a></li>
+                    <li><a href="Comments.php"><i class="fas fa-comment-alt"></i>&nbsp;Comments
+                    <?php 
+                        global $Connection;
+                        $AllCommnetQuery = "SELECT COUNT(*) FROM comments WHERE status='OFF'";
+                        $AllCommnetExecute = mysqli_query($Connection,$AllCommnetQuery);
+                        $AllCommnetrow=mysqli_fetch_array($AllCommnetExecute);
+                        $AllCommnets=array_shift($AllCommnetrow);
+                        if($AllCommnets>0) {
+                    ?>
+                        <span class="label label-warning pull-right"><?php echo $AllCommnets; ?></span>
+                                 <?php } ?>
+
+                    </a></li>
                     <li><a href="#"><i class="fas fa-podcast"></i>&nbsp;Live Blog</a></li>
                     <li><a href="#"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a></li>
                 </ul>
@@ -115,7 +127,29 @@
                             <td><?php echo $Admin; ?></td>
                             <td><?php echo $Category; ?></td>
                             <td><img src="Upload/<?php echo $Image; ?>" width="100"></td>
-                            <td>Processing</td>
+                            <td>  
+                                <?php 
+                                    global $Connection;
+                                    $CommnetQuery = "SELECT COUNT(*) FROM comments WHERE admin_panel_id='$Id' AND status='ON'";
+                                    $CommnetExecute = mysqli_query($Connection,$CommnetQuery);
+                                    $Commnetrow=mysqli_fetch_array($CommnetExecute);
+                                    $Total=array_shift($Commnetrow);
+                                    if($Total>0) {
+                                ?>
+                                    <span class="label label-success pull-right"><?php echo $Total; ?></span>
+                                    <?php } ?>
+
+                                <?php 
+                                    global $Connection;
+                                    $UnCommnetQuery = "SELECT COUNT(*) FROM comments WHERE admin_panel_id='$Id' AND status='OFF'";
+                                    $UnCommnetExecute = mysqli_query($Connection,$UnCommnetQuery);
+                                    $UnCommnetrow=mysqli_fetch_array($UnCommnetExecute);
+                                    $UnTotal=array_shift($UnCommnetrow);
+                                    if($UnTotal>0) {
+                                ?>
+                                    <span class="label label-danger pull-left"><?php echo $UnTotal; ?></span>
+                                    <?php } ?>
+                            </td>
                             <td>
                                 <a href="EditPost.php?Edit=<?php echo $Id; ?>"><span class="btn btn-warning">Edit</span></a>  
                                 <a href="DeletePost.php?Delete=<?php echo $Id; ?>"><span class="btn btn-danger">Delete</span></a>  
@@ -123,7 +157,6 @@
                            <td> <a href="FullPost.php?id=<?php echo $Id; ?>" target="_blank"><span class="btn btn-primary">Live Preview</span></a></td>
                         </tr>
                             <?php } ?>
-                            
                     </table>
                 </div>
 

@@ -17,5 +17,4 @@
             Redirect_to("Comments.php");
         }
     }
-
 ?>
