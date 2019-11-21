@@ -118,12 +118,14 @@
                             <th>Name</th>
                             <th>Date</th>
                             <th>Comment</th>
-                            <th>Approve</th>
+                            <th>Approved By</th>
+                            <th>Unapprove</th>
                             <th>Delete</th>
                             <th>Details</th>
                         </tr>
                         <?php 
                              global $Connection;
+                             $Admin = "DevStudio";
                              $Query = "SELECT * FROM comments WHERE status='ON' ORDER BY datetime desc";
                              $Execute = mysqli_query($Connection,$Query);
                              $SrNo=0;
@@ -143,7 +145,8 @@
                                 <td style="color: #5e5eff;"><?php echo $Name; ?></td>
                                 <td><?php echo htmlentities($DateTime); ?></td>
                                 <td><?php echo htmlentities($Comment); ?></td>
-                                <td><a href="#"><span class="btn btn-success">Approve</span></a></td>
+                                <td><?php echo htmlentities($Admin); ?></td>
+                                <td><a href="DisapproveComment.php?id=<?php echo $CommentID; ?>"><span class="btn btn-warning">Disapprove</span></a></td>
                                 <td><a href="#"><span class="btn btn-danger">Delete</span></a></td>
                                 <td><a href="FullPost.php?id=<?php echo $CommentPostID; ?>" target="_blank"><span class="btn btn-primary">Live Preview</span></a></td>
                             </tr>
