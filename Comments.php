@@ -54,7 +54,7 @@
                     <li><a href="Dashboard.php"><i class="fas fa-th"></i>&nbsp;Dashboard</a></li>
                     <li><a href="AddNewPost.php"><i class="fas fa-plus-square"></i>&nbsp;Add New Post</a></li>
                     <li><a href="Categories.php"><i class="fas fa-tags"></i>&nbsp;Categories</a></li>
-                    <li><a href="#"><i class="fas fa-user"></i>&nbsp;Manage Admins</a></li>
+                    <li><a href="Admins.php"><i class="fas fa-user"></i>&nbsp;Manage Admins</a></li>
                     <li class="active"><a href="Comments.php"><i class="fas fa-comment-alt"></i>&nbsp;Comments
                     <?php 
                         global $Connection;
