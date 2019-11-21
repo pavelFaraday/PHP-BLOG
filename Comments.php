@@ -62,7 +62,6 @@
             </div>
             <!-- End Side Area-->
 
-
             <!--Main area-->
             <div class="col-sm-10">
             <div><?php 
@@ -103,7 +102,7 @@
                                 <td><?php echo htmlentities($DateTime); ?></td>
                                 <td><?php echo htmlentities($Comment); ?></td>
                                 <td><a href="ApproveComments.php?id=<?php echo $CommentID; ?>"><span class="btn btn-success">Approve</span></a></td>
-                                <td><a href="#"><span class="btn btn-danger">Delete</span></a></td>
+                                <td><a href="DeleteCommments.php?id=<?php echo $CommentID; ?>"><span class="btn btn-danger">Delete</span></a></td>
                                 <td><a href="FullPost.php?id=<?php echo $CommentPostID; ?>" target="_blank"><span class="btn btn-primary">Live Preview</span></a></td>
                             </tr>
                              <?php } ?>
@@ -147,7 +146,7 @@
                                 <td><?php echo htmlentities($Comment); ?></td>
                                 <td><?php echo htmlentities($Admin); ?></td>
                                 <td><a href="DisapproveComment.php?id=<?php echo $CommentID; ?>"><span class="btn btn-warning">Disapprove</span></a></td>
-                                <td><a href="#"><span class="btn btn-danger">Delete</span></a></td>
+                                <td><a href="DeleteCommments.php?id=<?php echo $CommentID; ?>"><span class="btn btn-danger">Delete</span></a></td>
                                 <td><a href="FullPost.php?id=<?php echo $CommentPostID; ?>" target="_blank"><span class="btn btn-primary">Live Preview</span></a></td>
                             </tr>
                              <?php } ?>
