@@ -7,36 +7,23 @@
 if(isset($_POST["Submit"])){
     $UserName=$_POST["Username"]; 
     $Password=$_POST["Password"]; 
-    $ConfirmPassword=$_POST["ConfirmPassword"]; 
-    
-    date_default_timezone_set('Asia/Dubai');
-    $CurrentTime=time(); 
-    $DateTime=strftime("%d-%B-%Y %H:%M:%S",$CurrentTime);   
-    $DateTime;
-    $Admin = "DevStudio"; // default admin
-    if(empty($UserName)||empty($Password)||empty($ConfirmPassword)){
+  
+    if(empty($UserName)||empty($Password)){
         $_SESSION["ErrorMessage"]="All Fields must be field out";
         Redirect_to("Login.php");
-    }elseif(strlen($Password)<4) {
-        $_SESSION["ErrorMessage"]="Atleast 4 characters are Required for Password";
-        Redirect_to("Login.php");
-    }
-    elseif($Password!==$ConfirmPassword) {
-        $_SESSION["ErrorMessage"]="Passwords does't match!";
-        Redirect_to("Login.php");
-    }else {
-        global $Connection;
-        $Query = "INSERT INTO registration(datetime,username,password,addedby) VALUES('$DateTime','$UserName','$Password','$Admin')";
-        $Execute = mysqli_query($Connection,$Query);
-        if($Execute) {
-            $_SESSION["Successmessage"]="Admin added Successfully";
-            Redirect_to("Login.php");
-        }else {
-            $_SESSION["ErrorMessage"]="Admin failed to add";
-            Redirect_to("Login.php");
+    } else {
+            $Found_Account=Login_Attempt($UserName,$Password);
+            $_SESSION["User-Id"]= $Found_Account["id"];
+            $_SESSION["User-name"]= $Found_Account["username"];
+            if($Found_Account) {
+                $_SESSION["Successmessage"]="Login {$_SESSION["User-name"]} ";
+                Redirect_to("dashboard.php");
+            } else {
+                $_SESSION["ErrorMessage"]="Invalid Username or Password";
+                Redirect_to("Login.php");
+            }
         }
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -85,11 +72,21 @@ if(isset($_POST["Submit"])){
                         <fieldset>
                           <div class="form-group">
                             <label for="username"><span class="FieldInfo">UserName:</span></label>
-                            <input class="form-control" type="text" name="Username" id="username" placeholder="Username">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-user text-primary"></span>
+                                </span>
+                                <input class="form-control" type="text" name="Username" id="username" placeholder="Username">
+                            </div>
                           </div>
                           <div class="form-group">
                             <label for="password"><span class="FieldInfo">Password:</span></label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                   <span class="glyphicon glyphicon-lock text-primary"></span>
+                                </span>
                             <input class="form-control" type="password" name="Password" id="password" placeholder="Password">
+                            </div>
                           </div>
                           <br>
                           <input class="btn btn-info btn-block" type="submit" name="Submit" value="Login">
