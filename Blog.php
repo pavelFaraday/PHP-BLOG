@@ -54,23 +54,34 @@
             <div class="col-sm-8">
                 <?php 
                     global $Connection;
+                    // Query when search button is active
                     if(isset($_GET["SearchButton"])) {
                         $Search=$_GET["Search"];
                         $ViewQuery = "SELECT * FROM admin_panel WHERE datetime LIKE '%$Search%' 
                         OR title LIKE '%$Search%'
                         OR category LIKE '%$Search%' 
                         OR post LIKE '%$Search%' ";
+                    // Wuery When Pagination is active i.e Blog.php?Page=1
+                    } elseif(isset($_GET["Page"])){
+                        $Page = $_GET["Page"];
+                        if($Page==0||$Page<0){
+                            $ShowPostFrom=0;
+                        } else { 
+                        $ShowPostFrom = ($Page*5)-5;
+                        }
+                        $ViewQuery = "SELECT * FROM Admin_panel ORDER BY datetime desc LIMIT $ShowPostFrom,5";
+                    // The default query for Blog.php
                     } else {
-                    $ViewQuery = "SELECT * FROM Admin_panel ORDER BY datetime desc LIMIT 0,5"; }
-                    $Execute = mysqli_query($Connection,$ViewQuery);
-                    while ($row=mysqli_fetch_array($Execute)) {
-                        $PostId=$row["id"];
-                        $DateTime=$row["datetime"];  
-                        $Title=$row["title"]; 
-                        $Category=$row["category"];
-                        $Admin=$row["author"];
-                        $Image=$row["image"];
-                        $Post=$row["post"];
+                        $ViewQuery = "SELECT * FROM Admin_panel ORDER BY datetime desc LIMIT 0,2"; }
+                        $Execute = mysqli_query($Connection,$ViewQuery);
+                        while ($row=mysqli_fetch_array($Execute)) {
+                            $PostId=$row["id"];
+                            $DateTime=$row["datetime"];  
+                            $Title=$row["title"]; 
+                            $Category=$row["category"];
+                            $Admin=$row["author"];
+                            $Image=$row["image"];
+                            $Post=$row["post"];
                 ?>
                 <div class="blogpost thumbnail">
                     <img class="img-responsive img-rounded" src="Upload/<?php echo $Image ?>" alt="">
