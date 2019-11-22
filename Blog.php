@@ -101,7 +101,15 @@
                     <?php } ?>
 
                     <nav>
-                            <ul class="pagination pull-left">
+                        <ul class="pagination pull-left">
+                        <!-- Creating Backward Button -->
+                        <?php
+                        if(isset($Page)) {
+                            if($Page>1){
+                            ?> 
+                            <li><a href="Blog.php?Page=<?php echo $Page-1; ?>">&laquo;</a></li>   
+                            <?php } 
+                        } ?> 
                     <?php 
                         global $Connection;
                         $QueryPagination = "SELECT COUNT(*) FROM admin_panel";
@@ -122,6 +130,14 @@
                            <?php }
                              }
                         } ?>
+                      <!-- Creating Forward Button -->
+                    <?php
+                        if(isset($Page)) {
+                            if($Page+1<=$PostsPagination){
+                            ?> 
+                            <li><a href="Blog.php?Page=<?php echo $Page+1; ?>">&raquo;</a></li>   
+                            <?php } 
+                        } ?> 
                             </ul>
                         </nav>
 
