@@ -61,7 +61,7 @@
                         OR category LIKE '%$Search%' 
                         OR post LIKE '%$Search%' ";
                     } else {
-                    $ViewQuery = "SELECT * FROM Admin_panel ORDER BY datetime desc"; }
+                    $ViewQuery = "SELECT * FROM Admin_panel ORDER BY datetime desc LIMIT 0,5"; }
                     $Execute = mysqli_query($Connection,$ViewQuery);
                     while ($row=mysqli_fetch_array($Execute)) {
                         $PostId=$row["id"];
