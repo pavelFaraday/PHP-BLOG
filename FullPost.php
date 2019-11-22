@@ -117,7 +117,7 @@ if(isset($_POST["Submit"])){
                         Published on <?php echo htmlentities($DateTime); ?>
                         </p>
                         <p class="post"><?php 
-                        echo $Post; ?></p>
+                        echo nl2br($Post); ?></p>
                     </div>
                 </div>
                     <?php } ?>
@@ -136,7 +136,7 @@ if(isset($_POST["Submit"])){
                         <img class="pull-left" src="img/User2.png" alt="user" width="80px">
                         <p class="comment-info"><?php echo $CommenterName; ?></p>
                         <p class="description"><?php echo $CommentDate; ?></p>
-                        <p class="comment"><?php echo $Comment; ?></p>
+                        <p class="comment"><?php echo nl2br($Comment); ?></p>
 
                     </div>
                     <br>
