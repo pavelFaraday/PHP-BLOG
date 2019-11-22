@@ -8,12 +8,11 @@ if(isset($_POST["Submit"])){
     $UserName=$_POST["Username"]; 
     $Password=$_POST["Password"]; 
     $ConfirmPassword=$_POST["ConfirmPassword"]; 
-    
     date_default_timezone_set('Asia/Dubai');
     $CurrentTime=time(); 
     $DateTime=strftime("%d-%B-%Y %H:%M:%S",$CurrentTime);   
     $DateTime;
-    $Admin = "DevStudio"; // default admin
+    $Admin = $_SESSION["User-name"]; 
     if(empty($UserName)||empty($Password)||empty($ConfirmPassword)){
         $_SESSION["ErrorMessage"]="All Fields must be field out";
         Redirect_to("Admins.php");

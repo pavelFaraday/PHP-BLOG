@@ -11,7 +11,7 @@ if(isset($_POST["Submit"])){
     $CurrentTime=time(); 
     $DateTime=strftime("%d-%B-%Y %H:%M:%S",$CurrentTime);   
     $DateTime;
-    $Admin = "DevStudio"; // default admin
+    $Admin = $_SESSION["User-name"]; 
     if(empty($Category)){
         $_SESSION["ErrorMessage"]="Field must be field out";
         Redirect_to("Categories.php");

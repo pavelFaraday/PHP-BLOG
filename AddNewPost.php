@@ -12,7 +12,7 @@ if(isset($_POST["Submit"])){
     $CurrentTime=time();
     $DateTime=strftime("%d-%B-%Y %H:%M:%S",$CurrentTime);
     $DateTime;
-    $Admin = "DevStudio"; // default admin
+    $Admin = $_SESSION["User-name"];
     $Image = $_FILES["Image"]["name"];
     $Target="Upload/".basename($_FILES["Image"]["name"]); // target for save image in 'Upload' folder
     if(empty($Title)){
