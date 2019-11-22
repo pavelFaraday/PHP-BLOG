@@ -99,6 +99,21 @@
                     <a href="FullPost.php?id=<?php echo $PostId; ?>"><button class="btn btn-info">Read More &rsaquo;&rsaquo;</button></a>
                 </div>
                     <?php } ?>
+
+                    <?php 
+                        global $Connection;
+                        $QueryPagination = "SELECT COUNT(*) FROM admin_panel";
+                        $ExecutePagination = mysqli_query($Connection,$QueryPagination);
+                        $rowPagination = mysqli_fetch_array($ExecutePagination);
+                            $TotalPosts = array_shift($rowPagination);
+                            $PostsPagination = $TotalPosts/5;
+                            $PostsPagination = ceil($PostsPagination);
+
+                            for ($i=1; $i<=$PostsPagination; $i++) { 
+                    ?>
+                                <a href="Blog.php?Page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                            <?php } ?>
+
             </div>
             <div class="col-sm-4" style="background:blue;">
                 <h2>Test Right</h2>
