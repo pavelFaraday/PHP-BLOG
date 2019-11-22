@@ -100,6 +100,8 @@
                 </div>
                     <?php } ?>
 
+                    <nav>
+                            <ul class="pagination pull-left">
                     <?php 
                         global $Connection;
                         $QueryPagination = "SELECT COUNT(*) FROM admin_panel";
@@ -108,11 +110,20 @@
                             $TotalPosts = array_shift($rowPagination);
                             $PostsPagination = $TotalPosts/5;
                             $PostsPagination = ceil($PostsPagination);
-
+                            
                             for ($i=1; $i<=$PostsPagination; $i++) { 
-                    ?>
-                                <a href="Blog.php?Page=<?php echo $i; ?>"><?php echo $i; ?></a>
-                            <?php } ?>
+                              if(isset($Page)) {
+                                if($i==$Page) {
+                    ?>    
+                            <li class="active"><a href="Blog.php?Page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                            <?php
+                                } else { ?>
+                            <li><a href="Blog.php?Page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                           <?php }
+                             }
+                        } ?>
+                            </ul>
+                        </nav>
 
             </div>
             <div class="col-sm-4" style="background:blue;">
