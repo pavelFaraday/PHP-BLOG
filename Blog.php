@@ -61,8 +61,13 @@
                         OR title LIKE '%$Search%'
                         OR category LIKE '%$Search%' 
                         OR post LIKE '%$Search%' ";
-                    // Wuery When Pagination is active i.e Blog.php?Page=1
-                    } elseif(isset($_GET["Page"])){
+                    // Query when category is active
+                    }elseif(isset($_GET["Category"])) {
+                        $Category=$_GET["Category"];
+                        $ViewQuery = "SELECT * FROM admin_panel WHERE category='$Category' ORDER BY datetime desc";
+                    }
+                    // Query When Pagination is active i.e Blog.php?Page=1
+                     elseif(isset($_GET["Page"])){
                         $Page = $_GET["Page"];
                         if($Page==0||$Page<0){
                             $ShowPostFrom=0;
@@ -142,9 +147,44 @@
                         </nav>
 
             </div>
-            <div class="col-sm-4" style="background:blue;">
-                <h2>Test Right</h2>
+            <div class="col-sm-4">
+                <h2>About Us</h2>
+                <img class="img-responsive" src="img/about-us.jpg" alt="">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero repudiandae corrupti quam molestiae magnam nam omnis expedita, eum quia explicabo eius. Totam odit ratione illum! Suscipit, eos rerum nulla alias veniam similique dolor repudiandae vel aliquid? Eos illum obcaecati inventore ratione quisquam laudantium? Ab ducimus nam inventore enim deleniti voluptas alias mollitia. Architecto, qui officiis illo, facere asperiores labore ipsum unde fugit accusantium ducimus reiciendis incidunt dignissimos? Quod, tenetur repellat.</p>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Categories</h2>
+                    </div>
+                    <div class="panel-body">
+                        <?php 
+                            global $Connection;
+                            $ViewQuery = "SELECT * FROM category ORDER BY datetime desc"; 
+                            $Execute = mysqli_query($Connection,$ViewQuery);
+                            while ($row=mysqli_fetch_array($Execute)) {
+                                $Id=$row["id"];
+                                $Category=$row["name"];
+                        ?>
+                        <a href="Blog.php?Category=<?php echo $Category; ?>"><span id="heading"><?php echo $Category."<br>"; ?></span></a>
+                            <?php } ?>
+                    </div>
+                    <div class="panel-footer">
+                    
+                    </div>
+                </div>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Recent Posts</h2>
+                    </div>
+                    <div class="panel-body">
+                        Dummy Content
+                    </div>
+                    <div class="panel-footer">
+                    
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
