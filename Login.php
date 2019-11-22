@@ -16,7 +16,7 @@ if(isset($_POST["Submit"])){
             $_SESSION["User-Id"]= $Found_Account["id"];
             $_SESSION["User-name"]= $Found_Account["username"];
             if($Found_Account) {
-                $_SESSION["Successmessage"]="Login {$_SESSION["User-name"]} ";
+                $_SESSION["Successmessage"]="Welcome {$_SESSION["User-name"]} ";
                 Redirect_to("dashboard.php");
             } else {
                 $_SESSION["ErrorMessage"]="Invalid Username or Password";

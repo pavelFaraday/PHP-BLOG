@@ -2,6 +2,7 @@
 <?php require_once("include/Functions.php"); ?>
 <?php require_once("include/DB.php"); ?>
 
+
 <?php 
     if(isset($_GET["id"])) {
         $IdFromURL=$_GET["id"];

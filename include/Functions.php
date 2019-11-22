@@ -17,4 +17,17 @@
                 return null;
             }
     }
+
+    function Login() {
+        if(isset($_SESSION["User-Id"])) {
+            return true;
+        }
+    }
+
+    function Confirm_Login() {
+        if(!Login()) {
+            $_SESSION["ErrorMessage"]="Login Required";
+            Redirect_to("Login.php");
+        }
+    }
 ?>

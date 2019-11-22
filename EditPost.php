@@ -1,6 +1,7 @@
 <?php require_once("include/DB.php"); ?>
 <?php require_once("include/Sessions.php"); ?>
 <?php require_once("include/Functions.php"); ?>
+<?php Confirm_Login(); ?>
 
 <?php
 if(isset($_POST["Submit"])){
