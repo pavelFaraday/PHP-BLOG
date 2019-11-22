@@ -7,7 +7,8 @@
         $IdFromURL=$_GET["id"];
 
         global $Connection;
-        $Query = "UPDATE comments SET status='ON' WHERE id='$IdFromURL'"; 
+        $Admin = $_SESSION["User-name"];
+        $Query = "UPDATE comments SET status='ON', approvedby='$Admin' WHERE id='$IdFromURL'"; 
         $Execute = mysqli_query($Connection,$Query);
         if($Execute) {
             $_SESSION["Successmessage"]="Comment Approved Successfully";
@@ -17,5 +18,4 @@
             Redirect_to("Comments.php");
         }
     }
-
 ?>

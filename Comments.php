@@ -131,6 +131,7 @@
                             <th>Date</th>
                             <th>Comment</th>
                             <th>Approved By</th>
+                            <th>Approved By</th>
                             <th>Unapprove</th>
                             <th>Delete</th>
                             <th>Details</th>
@@ -146,6 +147,7 @@
                                  $DateTime = $row['datetime'];
                                  $Name = $row['name'];
                                  $Comment = $row['comment'];
+                                 $ApprovedBy = $row['approvedby'];
                                  $CommentPostID = $row['admin_panel_id'];
                                  $SrNo++;
 
@@ -157,6 +159,7 @@
                                 <td style="color: #5e5eff;"><?php echo $Name; ?></td>
                                 <td><?php echo htmlentities($DateTime); ?></td>
                                 <td><?php echo htmlentities($Comment); ?></td>
+                                <td><?php echo htmlentities($ApprovedBy); ?></td>
                                 <td><?php echo htmlentities($Admin); ?></td>
                                 <td><a href="DisapproveComment.php?id=<?php echo $CommentID; ?>"><span class="btn btn-warning">Disapprove</span></a></td>
                                 <td><a href="DeleteCommments.php?id=<?php echo $CommentID; ?>"><span class="btn btn-danger">Delete</span></a></td>
