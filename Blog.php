@@ -158,15 +158,15 @@
                     </div>
                     <div class="panel-body background">
                         <?php 
-                            global $Connection;
-                            $ViewQuery = "SELECT * FROM category ORDER BY datetime desc"; 
+                        global $Connection;
+                        $ViewQuery = "SELECT * FROM category ORDER BY datetime desc"; 
                             $Execute = mysqli_query($Connection,$ViewQuery);
                             while ($row=mysqli_fetch_array($Execute)) {
                                 $Id=$row["id"];
                                 $Category=$row["name"];
                         ?>
                         <a href="Blog.php?Category=<?php echo $Category; ?>"><span id="heading"><?php echo $Category."<br>"; ?></span></a>
-                            <?php } ?>
+                        <?php } ?>
                     </div>
                     <div class="panel-footer">
                     
