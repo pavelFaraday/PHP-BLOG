@@ -1,2 +1,2 @@
 # PHP-BLOG
-Complete CMS Blog with PHP MYSQL Bootstrap JS
+Complete CMS Blog with Procedural PHP MYSQL Bootstrap JS
