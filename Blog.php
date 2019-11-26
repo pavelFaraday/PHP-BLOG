@@ -156,7 +156,7 @@
                     <div class="panel-heading">
                         <h2 class="panel-title">Categories</h2>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body background">
                         <?php 
                             global $Connection;
                             $ViewQuery = "SELECT * FROM category ORDER BY datetime desc"; 
@@ -178,7 +178,27 @@
                         <h2 class="panel-title">Recent Posts</h2>
                     </div>
                     <div class="panel-body">
-                        Dummy Content
+                        <?php 
+                             global $Connection;
+                             $ViewQuery = "SELECT * FROM admin_panel ORDER BY datetime desc LIMIT 0,5";
+                             $Execute = mysqli_query($Connection,$ViewQuery);
+                             while ($row=mysqli_fetch_array($Execute)) {
+                                 $Id=$row["id"];
+                                 $Title=$row["title"];
+                                 $DateTime=$row["datetime"];
+                                 $Image=$row["image"];  
+                                 if(strlen($DateTime)>11){$DateTime=substr($DateTime,0,11);}
+                        ?>
+
+                        <div>
+                            <img id="img-panel" class="pull-left" src="Upload/<?php echo $Image; ?>" width=90;>
+                            <a href="FullPost.php?id=<?php echo $Id; ?>">
+                               <p id="heading" style="margin-left:150px;"><?php echo htmlentities($Title); ?></p>
+                               <p class="description" style="margin-left:150px;"><?php echo htmlentities($DateTime); ?></p>
+                            </a>
+                            <hr>
+                        </div>
+                        <?php } ?>
                     </div>
                     <div class="panel-footer">
                     

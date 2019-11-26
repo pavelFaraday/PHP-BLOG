@@ -91,3 +91,9 @@
     font-weight: bold;
     color: rgb(251, 174, 44);
 }
+#img-panel {
+    margin: 10px 0 0 10px;
+}
+.background {
+    background: #f6f7f9;
+}
