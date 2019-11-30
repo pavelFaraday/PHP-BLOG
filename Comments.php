@@ -69,7 +69,7 @@
                                  <?php } ?>
 
                     </a></li>
-                    <li><a href="#"><i class="fas fa-podcast"></i>&nbsp;Live Blog</a></li>
+                    <li><a href="Blog.php?Page=1" target=_blank><i class="fas fa-podcast"></i>&nbsp;Live Blog</a></li>
                     <li><a href="Logout.php"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a></li>
                 </ul>
             </div>

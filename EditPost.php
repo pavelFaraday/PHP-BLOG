@@ -92,7 +92,7 @@ if(isset($_POST["Submit"])){
                     <li><a href="Categories.php"><i class="fas fa-tags"></i>&nbsp;Categories</a></li>
                     <li><a href="Admins.php"><i class="fas fa-user"></i>&nbsp;Manage Admins</a></li>
                     <li><a href="Comments.php"><i class="fas fa-comment-alt"></i>&nbsp;Comments</a></li>
-                    <li><a href="#"><i class="fas fa-podcast"></i>&nbsp;Live Blog</a></li>
+                    <li><a href="Blog.php?Page=1" target=_blank><i class="fas fa-podcast"></i>&nbsp;Live Blog</a></li>
                     <li><a href="Logout.php"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a></li>
                 </ul>
             </div> <!-- End Side Area-->

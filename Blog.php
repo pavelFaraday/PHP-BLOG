@@ -96,6 +96,17 @@
                         Category: <?php echo htmlentities($Category); ?> 
                         <span id="devider">|</span> 
                         Published on <?php echo htmlentities($DateTime); ?>
+
+                        <?php 
+                                    global $Connection;
+                                    $CommnetQuery = "SELECT COUNT(*) FROM comments WHERE admin_panel_id='$PostId' AND status='ON'";
+                                    $CommnetExecute = mysqli_query($Connection,$CommnetQuery);
+                                    $Commnetrow=mysqli_fetch_array($CommnetExecute);
+                                    $Total=array_shift($Commnetrow);
+                                    if($Total>0) {
+                                ?>
+                                    <span class="badge pull-right">Comments:<?php echo $Total; ?></span>
+                                    <?php } ?>
                         </p>
                         <p class="post"><?php 
                         if(strlen($Post)>280) {$Post=substr($Post,0,280).'...';}
