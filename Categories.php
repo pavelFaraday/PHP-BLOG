@@ -136,7 +136,7 @@ if(isset($_POST["Submit"])){
                         </tr>
                         <?php 
                             global $Connection;
-                            $ViewQuery = "SELECT * FROM category ORDER by datetime desc";
+                            $ViewQuery = "SELECT * FROM category ORDER by id desc";
                             $Execute = mysqli_query($Connection,$ViewQuery);
                             
                             $SrNo=0;

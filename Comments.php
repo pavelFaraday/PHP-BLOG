@@ -95,7 +95,7 @@
                         </tr>
                         <?php 
                              global $Connection;
-                             $Query = "SELECT * FROM comments WHERE status='OFF' ORDER BY datetime desc";
+                             $Query = "SELECT * FROM comments WHERE status='OFF' ORDER BY id desc";
                              $Execute = mysqli_query($Connection,$Query);
                              $SrNo=0;
                              while ($row=mysqli_fetch_array($Execute)) {
@@ -139,7 +139,7 @@
                         <?php 
                              global $Connection;
                              $Admin = "DevStudio";
-                             $Query = "SELECT * FROM comments WHERE status='ON' ORDER BY datetime desc";
+                             $Query = "SELECT * FROM comments WHERE status='ON' ORDER BY id desc";
                              $Execute = mysqli_query($Connection,$Query);
                              $SrNo=0;
                              while ($row=mysqli_fetch_array($Execute)) {

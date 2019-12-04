@@ -147,7 +147,7 @@ if(isset($_POST["Submit"])){
                         </tr>
                         <?php 
                             global $Connection;
-                            $ViewQuery = "SELECT * FROM registration ORDER by datetime desc";
+                            $ViewQuery = "SELECT * FROM registration ORDER by id desc";
                             $Execute = mysqli_query($Connection,$ViewQuery);
                             $SrNo=0;
                             while ($row=mysqli_fetch_array($Execute)) {

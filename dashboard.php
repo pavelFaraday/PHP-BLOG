@@ -100,7 +100,7 @@
 
                         <?php 
                             global $Connection;
-                            $ViewQuery = "SELECT * FROM admin_panel ORDER BY datetime desc";
+                            $ViewQuery = "SELECT * FROM admin_panel ORDER BY id desc";
                             $Execute = mysqli_query($Connection,$ViewQuery);
                             $SrNo = 0;
                             while ($row=mysqli_fetch_array($Execute)) {

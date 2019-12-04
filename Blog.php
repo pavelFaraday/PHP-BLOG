@@ -60,11 +60,11 @@
                         $ViewQuery = "SELECT * FROM admin_panel WHERE datetime LIKE '%$Search%' 
                         OR title LIKE '%$Search%'
                         OR category LIKE '%$Search%' 
-                        OR post LIKE '%$Search%' ";
+                        OR post LIKE '%$Search%' ORDER BY id desc";
                     // Query when category is active
                     }elseif(isset($_GET["Category"])) {
                         $Category=$_GET["Category"];
-                        $ViewQuery = "SELECT * FROM admin_panel WHERE category='$Category' ORDER BY datetime desc";
+                        $ViewQuery = "SELECT * FROM admin_panel WHERE category='$Category' ORDER BY id desc";
                     }
                     // Query When Pagination is active i.e Blog.php?Page=1
                      elseif(isset($_GET["Page"])){
@@ -74,10 +74,10 @@
                         } else { 
                         $ShowPostFrom = ($Page*5)-5;
                         }
-                        $ViewQuery = "SELECT * FROM Admin_panel ORDER BY datetime desc LIMIT $ShowPostFrom,5";
+                        $ViewQuery = "SELECT * FROM Admin_panel ORDER BY id desc LIMIT $ShowPostFrom,5";
                     // The default query for Blog.php
                     } else {
-                        $ViewQuery = "SELECT * FROM Admin_panel ORDER BY datetime desc LIMIT 0,2"; }
+                        $ViewQuery = "SELECT * FROM Admin_panel ORDER BY id desc LIMIT 0,2"; }
                         $Execute = mysqli_query($Connection,$ViewQuery);
                         while ($row=mysqli_fetch_array($Execute)) {
                             $PostId=$row["id"];
@@ -170,7 +170,7 @@
                     <div class="panel-body background">
                         <?php 
                         global $Connection;
-                        $ViewQuery = "SELECT * FROM category ORDER BY datetime desc"; 
+                        $ViewQuery = "SELECT * FROM category ORDER BY id desc"; 
                             $Execute = mysqli_query($Connection,$ViewQuery);
                             while ($row=mysqli_fetch_array($Execute)) {
                                 $Id=$row["id"];
@@ -191,7 +191,7 @@
                     <div class="panel-body">
                         <?php 
                              global $Connection;
-                             $ViewQuery = "SELECT * FROM admin_panel ORDER BY datetime desc LIMIT 0,5";
+                             $ViewQuery = "SELECT * FROM admin_panel ORDER BY id desc LIMIT 0,5";
                              $Execute = mysqli_query($Connection,$ViewQuery);
                              while ($row=mysqli_fetch_array($Execute)) {
                                  $Id=$row["id"];
